@@ -77,11 +77,23 @@ jobs:
       - name: Run tests to generate coverage
         run: npm test
       
+      - name: Verify coverage report exists
+        run: |
+          if [ ! -f coverage/lcov.info ]; then
+            echo "Error: coverage/lcov.info not found"
+            exit 1
+          fi
+          echo "Coverage report found"
+      
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          args: >
+            -Dsonar.projectKey=notes-app-sonar
+            -Dsonar.projectName=notes-app-sonar
 
   k6-smoke-test:
     name: k6 Load Test
