@@ -92,8 +92,8 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
           args: >
-            -Dsonar.projectKey=notes-app-sonar
-            -Dsonar.projectName=notes-app-sonar
+            -Dsonar.projectKey=digitalskola-devops-31
+            -Dsonar.projectName=digitalskola-devops-31
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
 
   k6-smoke-test:
