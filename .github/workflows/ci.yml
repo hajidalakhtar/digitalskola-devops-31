@@ -94,6 +94,7 @@ jobs:
           args: >
             -Dsonar.projectKey=notes-app-sonar
             -Dsonar.projectName=notes-app-sonar
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
 
   k6-smoke-test:
     name: k6 Load Test
