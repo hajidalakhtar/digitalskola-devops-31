@@ -85,11 +85,16 @@ jobs:
           fi
           echo "Coverage report found"
       
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          args: >
+            -Dsonar.projectKey=hajidalakhtar_digitalskola-devops-31
+            -Dsonar.projectName=hajidalakhtar_digitalskola-devops-31
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
 
   k6-smoke-test:
     name: k6 Load Test
